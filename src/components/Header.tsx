@@ -58,7 +58,7 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
                 {userPoints} points
               </span>
             </div>
-            <a href="../../Odoo/login.html" >Login</a>
+            
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
