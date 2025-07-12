@@ -64,7 +64,7 @@ export function ItemDetailPage({ itemId, onBack }: ItemDetailPageProps) {
   const getAvailabilityStatus = () => {
     switch (item.availability) {
       case 'available':
-        return { text: 'Available', color: 'text-orange-600 bg-orange-100' };
+        return { text: 'Available', color: 'text-primary bg-orange-100' };
       case 'pending':
         return { text: 'Swap Pending', color: 'text-yellow-600 bg-yellow-100' };
       case 'swapped':
@@ -104,7 +104,7 @@ export function ItemDetailPage({ itemId, onBack }: ItemDetailPageProps) {
                   key={index}
                   onClick={() => setSelectedImage(index)}
                   className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-colors ${
-                    selectedImage === index ? 'border-orange-600' : 'border-transparent hover:border-gray-300'
+                    selectedImage === index ? 'border-primary' : 'border-transparent hover:border-gray-300'
                   }`}
                 >
                   <img src={image} alt={`${item.title} ${index + 1}`} className="w-full h-full object-cover" />
@@ -131,7 +131,7 @@ export function ItemDetailPage({ itemId, onBack }: ItemDetailPageProps) {
                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${status.color}`}>
                   {status.text}
                 </span>
-                <div className="text-2xl font-bold text-orange-600">{item.points} points</div>
+                <div className="text-2xl font-bold text-primary">{item.points} points</div>
               </div>
 
               <div className="flex items-center space-x-4 text-sm text-gray-500">
@@ -201,7 +201,7 @@ export function ItemDetailPage({ itemId, onBack }: ItemDetailPageProps) {
               <div className="space-y-3">
                 <button
                   onClick={() => setShowSwapModal(true)}
-                  className="w-full bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-700 transition-colors flex items-center justify-center space-x-2"
+                  className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary transition-colors flex items-center justify-center space-x-2"
                 >
                   <Package className="h-5 w-5" />
                   <span>Request Swap</span>
@@ -250,11 +250,11 @@ export function ItemDetailPage({ itemId, onBack }: ItemDetailPageProps) {
                 </div>
               </div>
               <div className="mt-3 flex items-center space-x-2 text-sm">
-                <Shield className="h-4 w-4 text-orange-600" />
+                <Shield className="h-4 w-4 text-primary" />
                 <span className="text-gray-600">{item.uploader.responseTime}</span>
               </div>
             </div>
-            <button className="bg-orange-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-orange-700 transition-colors">
+            <button className="bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-secondary transition-colors">
               View Profile
             </button>
           </div>
@@ -270,7 +270,7 @@ export function ItemDetailPage({ itemId, onBack }: ItemDetailPageProps) {
                 <div className="p-4">
                   <h4 className="font-semibold text-gray-900 mb-1">{similarItem.title}</h4>
                   <p className="text-gray-600 mb-2">{similarItem.brand}</p>
-                  <div className="text-orange-600 font-semibold">{similarItem.points} pts</div>
+                  <div className="text-primary font-semibold">{similarItem.points} pts</div>
                 </div>
               </div>
             ))}
@@ -288,7 +288,7 @@ export function ItemDetailPage({ itemId, onBack }: ItemDetailPageProps) {
             </p>
             <textarea
               placeholder="Write a message about what you'd like to swap..."
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent mb-4"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent mb-4"
               rows={4}
             />
             <div className="flex space-x-3">
@@ -298,7 +298,7 @@ export function ItemDetailPage({ itemId, onBack }: ItemDetailPageProps) {
               >
                 Cancel
               </button>
-              <button className="flex-1 bg-orange-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-orange-700 transition-colors">
+              <button className="flex-1 bg-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-secondary transition-colors">
                 Send Request
               </button>
             </div>

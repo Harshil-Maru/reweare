@@ -115,7 +115,7 @@ export function AddItemPage() {
                   Drag and drop photos here, or click to select
                 </p>
                 <p className="text-gray-600 mb-4">JPG, PNG up to 10MB each</p>
-                <label className="bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-orange-700 transition-colors cursor-pointer">
+                <label className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-secondary transition-colors cursor-pointer">
                   <input
                     type="file"
                     multiple
@@ -147,7 +147,7 @@ export function AddItemPage() {
                         <X className="h-4 w-4" />
                       </button>
                       {index === 0 && (
-                        <div className="absolute bottom-2 left-2 bg-orange-600 text-white px-2 py-1 rounded text-xs font-semibold">
+                        <div className="absolute bottom-2 left-2 bg-primary text-white px-2 py-1 rounded text-xs font-semibold">
                           Cover
                         </div>
                       )}
@@ -171,7 +171,7 @@ export function AddItemPage() {
                   required
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="e.g., Vintage Denim Jacket"
                 />
               </div>
@@ -184,7 +184,7 @@ export function AddItemPage() {
                   type="text"
                   value={formData.brand}
                   onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="e.g., Levi's"
                 />
               </div>
@@ -197,7 +197,7 @@ export function AddItemPage() {
                   required
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 >
                   <option value="">Select a category</option>
                   {categories.map(category => (
@@ -214,7 +214,7 @@ export function AddItemPage() {
                   required
                   value={formData.size}
                   onChange={(e) => setFormData({ ...formData, size: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 >
                   <option value="">Select size</option>
                   {sizes.map(size => (
@@ -231,7 +231,7 @@ export function AddItemPage() {
                   type="text"
                   value={formData.color}
                   onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="e.g., Navy Blue"
                 />
               </div>
@@ -246,7 +246,7 @@ export function AddItemPage() {
                     type="text"
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder="Your city or area"
                   />
                 </div>
@@ -266,7 +266,7 @@ export function AddItemPage() {
                       value={condition.value}
                       checked={formData.condition === condition.value}
                       onChange={(e) => setFormData({ ...formData, condition: e.target.value })}
-                      className="mt-1 text-orange-600 focus:ring-orange-500"
+                      className="mt-1 text-primary focus:ring-primary"
                     />
                     <div>
                       <div className="font-medium text-gray-900">{condition.value.replace('-', ' ').toUpperCase()}</div>
@@ -285,7 +285,7 @@ export function AddItemPage() {
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 rows={4}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 placeholder="Describe the item, its features, and any styling details..."
               />
             </div>
@@ -303,7 +303,7 @@ export function AddItemPage() {
                     <button
                       type="button"
                       onClick={() => removeTag(tag)}
-                      className="text-orange-600 hover:text-orange-800"
+                      className="text-primary hover:text-secondary"
                     >
                       <X className="h-3 w-3" />
                     </button>
@@ -316,13 +316,13 @@ export function AddItemPage() {
                   value={newTag}
                   onChange={(e) => setNewTag(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="Add tags like 'vintage', 'casual', 'formal'..."
                 />
                 <button
                   type="button"
                   onClick={addTag}
-                  className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors"
+                  className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors"
                 >
                   <Plus className="h-4 w-4" />
                 </button>
@@ -340,7 +340,7 @@ export function AddItemPage() {
                   Points may vary based on demand and final item details.
                 </p>
               </div>
-              <div className="text-3xl font-bold text-orange-600">{estimatedPoints}</div>
+              <div className="text-3xl font-bold text-primary">{estimatedPoints}</div>
             </div>
           </div>
 
@@ -355,7 +355,7 @@ export function AddItemPage() {
                 value={formData.swapPreferences}
                 onChange={(e) => setFormData({ ...formData, swapPreferences: e.target.value })}
                 rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 placeholder="e.g., Looking for summer dresses in size M, or casual sneakers size 8..."
               />
             </div>
@@ -365,7 +365,7 @@ export function AddItemPage() {
           <div className="flex space-x-4">
             <button
               type="submit"
-              className="flex-1 bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-700 transition-colors"
+              className="flex-1 bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary transition-colors"
             >
               List Item & Earn Points
             </button>

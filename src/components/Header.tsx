@@ -40,8 +40,8 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
                   onClick={() => onViewChange(item.id)}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     currentView === item.id
-                      ? 'text-orange-600 bg-orange-50'
-                      : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                      ? 'text-primary bg-orange-50'
+                      : 'text-gray-700 hover:text-primary hover:bg-gray-50'
                   }`}
                 >
                   <Icon className="h-4 w-4" />
@@ -54,7 +54,7 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
           {/* Points & Mobile Menu */}
           <div className="flex items-center space-x-4">
             <div className="bg-orange-100 px-3 py-1 rounded-full">
-              <span className="text-orange-700 font-semibold text-sm">
+              <span className="text-primary font-semibold text-sm">
                 {userPoints} points
               </span>
             </div>
@@ -62,7 +62,7 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-md text-gray-700 hover:text-orange-600 hover:bg-gray-50"
+              className="md:hidden p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-50"
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -84,8 +84,8 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
                     }}
                     className={`w-full flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       currentView === item.id
-                        ? 'text-orange-600 bg-orange-50'
-                        : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                        ? 'text-primary bg-orange-50'
+                        : 'text-gray-700 hover:text-primary hover:bg-gray-50'
                     }`}
                   >
                     <Icon className="h-4 w-4" />

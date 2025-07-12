@@ -17,7 +17,7 @@ export function HomePage({ onViewChange, onViewItem }: HomePageProps) {
       size: "M",
       condition: "Excellent",
       points: 35,
-      image: "https://images.pexels.com/photos/1232459/pexels-photo-1232459.jpeg?auto=compress&cs=tinysrgb&w=300",
+      image: "https://images.pexels.com/photos/1082529/pexels-photo-1082529.jpeg?auto=compress&cs=tinysrgb&w=300",
       user: "Sarah M."
     },
     {
@@ -27,7 +27,7 @@ export function HomePage({ onViewChange, onViewItem }: HomePageProps) {
       size: "L",
       condition: "Very Good",
       points: 45,
-      image: "https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=300",
+      image: "https://images.pexels.com/photos/1462637/pexels-photo-1462637.jpeg?auto=compress&cs=tinysrgb&w=300",
       user: "Alex K."
     },
     {
@@ -63,9 +63,9 @@ export function HomePage({ onViewChange, onViewItem }: HomePageProps) {
   ];
 
   const stats = [
-    { icon: Recycle, value: "12,453", label: "Items Exchanged", color: "text-orange-600" },
+    { icon: Recycle, value: "12,453", label: "Items Exchanged", color: "text-primary" },
     { icon: Users, value: "3,847", label: "Active Members", color: "text-gray-600" },
-    { icon: Leaf, value: "2.3M", label: "CO₂ Saved (kg)", color: "text-orange-600" },
+    { icon: Leaf, value: "2.3M", label: "CO₂ Saved (kg)", color: "text-primary" },
     { icon: Award, value: "847K", label: "Points Earned", color: "text-gray-600" }
   ];
 
@@ -85,12 +85,12 @@ export function HomePage({ onViewChange, onViewItem }: HomePageProps) {
           <div className="text-center">
             <div className="flex justify-center mb-6">
               <div className="bg-orange-100 p-4 rounded-full">
-                <Leaf className="h-16 w-16 text-orange-600" />
+                <Leaf className="h-16 w-16 text-primary" />
               </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Welcome to ReWear
-              <span className="text-orange-600"> Sustainable Fashion</span>
+              <span className="text-primary"> Sustainable Fashion</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               The premier platform for exchanging unused clothing through direct swaps or our innovative point-based system. 
@@ -99,20 +99,20 @@ export function HomePage({ onViewChange, onViewItem }: HomePageProps) {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button
                 onClick={() => onViewChange('add-item')}
-                className="bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-orange-700 transition-colors flex items-center justify-center space-x-2 text-lg"
+                className="bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-secondary transition-colors flex items-center justify-center space-x-2 text-lg"
               >
                 <span>Start Swapping</span>
                 <ArrowRight className="h-5 w-5" />
               </button>
               <button
                 onClick={() => onViewChange('add-item')}
-                className="border-2 border-orange-600 text-orange-600 px-8 py-4 rounded-lg font-semibold hover:bg-orange-50 transition-colors text-lg"
+                className="border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-orange-50 transition-colors text-lg"
               >
                 Browse Items
               </button>
               <button
                 onClick={() => onViewChange('add-item')}
-                className="bg-gray-900 text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors text-lg"
+                className="bg-dark text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors text-lg"
               >
                 List an Item
               </button>
@@ -173,7 +173,7 @@ export function HomePage({ onViewChange, onViewItem }: HomePageProps) {
                     alt={item.title}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                          <div className="absolute top-3 right-3 bg-orange-600 text-white px-2 py-1 rounded-full text-sm font-semibold">
+                          <div className="absolute top-3 right-3 bg-primary text-white px-2 py-1 rounded-full text-sm font-semibold">
                     {item.points} pts
                   </div>
                 </div>
@@ -186,10 +186,10 @@ export function HomePage({ onViewChange, onViewItem }: HomePageProps) {
                     </div>
                   </div>
                   <p className="text-gray-600 mb-1">{item.brand} • Size {item.size}</p>
-                          <p className="text-sm text-orange-600 font-medium mb-3">Condition: {item.condition}</p>
+                          <p className="text-sm text-secondary font-medium mb-3">Condition: {item.condition}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">by {item.user}</span>
-                            <button className="text-orange-600 hover:text-orange-700 font-medium text-sm">
+                            <button className="text-secondary hover:text-primary font-medium text-sm">
                       View Details
                     </button>
                   </div>
@@ -220,7 +220,7 @@ export function HomePage({ onViewChange, onViewItem }: HomePageProps) {
           <div className="text-center mt-12">
             <button
               onClick={() => onViewChange('browse')}
-              className="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors"
+              className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-secondary transition-colors"
             >
               View All Items
             </button>
@@ -240,7 +240,7 @@ export function HomePage({ onViewChange, onViewItem }: HomePageProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-orange-600">1</span>
+                <span className="text-2xl font-bold text-primary">1</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">List Your Items</h3>
               <p className="text-gray-600">
@@ -258,7 +258,7 @@ export function HomePage({ onViewChange, onViewItem }: HomePageProps) {
             </div>
             <div className="text-center">
               <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-orange-600">3</span>
+                <span className="text-2xl font-bold text-primary">3</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Complete Exchange</h3>
               <p className="text-gray-600">

@@ -87,7 +87,7 @@ export function UserDashboard({ onViewChange }: UserDashboardProps) {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'available': return 'text-orange-600 bg-orange-100';
+      case 'available': return 'text-primary bg-orange-100';
       case 'pending': return 'text-yellow-600 bg-yellow-100';
       case 'swapped': return 'text-gray-600 bg-gray-100';
       default: return 'text-gray-600 bg-gray-100';
@@ -107,7 +107,7 @@ export function UserDashboard({ onViewChange }: UserDashboardProps) {
         <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
           <div className="flex items-center space-x-6">
             <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center">
-              <span className="text-2xl font-bold text-orange-600">{userProfile.avatar}</span>
+              <span className="text-2xl font-bold text-primary">{userProfile.avatar}</span>
             </div>
             <div className="flex-1">
               <h2 className="text-2xl font-bold text-gray-900 mb-1">{userProfile.name}</h2>
@@ -125,7 +125,7 @@ export function UserDashboard({ onViewChange }: UserDashboardProps) {
             </div>
             <button
               onClick={() => onViewChange('profile')}
-              className="bg-orange-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-orange-700 transition-colors"
+              className="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-secondary transition-colors"
             >
               Edit Profile
             </button>
@@ -135,7 +135,7 @@ export function UserDashboard({ onViewChange }: UserDashboardProps) {
         {/* Points Balance */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow-sm p-6 text-center">
-            <div className="text-3xl font-bold text-orange-600 mb-2">{pointsBalance.current}</div>
+            <div className="text-3xl font-bold text-primary mb-2">{pointsBalance.current}</div>
             <div className="text-sm text-gray-600">Current Points</div>
           </div>
           <div className="bg-white rounded-lg shadow-sm p-6 text-center">
@@ -160,7 +160,7 @@ export function UserDashboard({ onViewChange }: UserDashboardProps) {
                 <h3 className="text-lg font-semibold text-gray-900">My Items ({uploadedItems.length})</h3>
                 <button
                   onClick={() => onViewChange('add-item')}
-                  className="bg-orange-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-orange-700 transition-colors flex items-center space-x-2"
+                  className="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-secondary transition-colors flex items-center space-x-2"
                 >
                   <Plus className="h-4 w-4" />
                   <span>Add Item</span>
@@ -176,7 +176,7 @@ export function UserDashboard({ onViewChange }: UserDashboardProps) {
                       <h4 className="font-semibold text-gray-900">{item.title}</h4>
                       <p className="text-sm text-gray-600">{item.brand} • {item.condition}</p>
                       <div className="flex items-center space-x-4 mt-1">
-                        <span className="text-orange-600 font-semibold text-sm">{item.points} pts</span>
+                        <span className="text-primary font-semibold text-sm">{item.points} pts</span>
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(item.status)}`}>
                           {item.status}
                         </span>
@@ -195,7 +195,7 @@ export function UserDashboard({ onViewChange }: UserDashboardProps) {
               <div className="mt-6 text-center">
                 <button
                   onClick={() => onViewChange('profile')}
-                  className="text-orange-600 hover:text-orange-700 font-medium"
+                  className="text-primary hover:text-secondary font-medium"
                 >
                   View All Items
                 </button>
@@ -227,7 +227,7 @@ export function UserDashboard({ onViewChange }: UserDashboardProps) {
                     </div>
                     <div className="flex space-x-2">
                       {swap.type === 'swap_request' && (
-                        <button className="text-orange-600 hover:text-orange-700">
+                        <button className="text-primary hover:text-secondary">
                           <MessageCircle className="h-5 w-5" />
                         </button>
                       )}
@@ -243,7 +243,7 @@ export function UserDashboard({ onViewChange }: UserDashboardProps) {
               <div className="mt-6 text-center">
                 <button
                   onClick={() => onViewChange('messages')}
-                  className="text-orange-600 hover:text-orange-700 font-medium"
+                  className="text-primary hover:text-secondary font-medium"
                 >
                   View All Messages
                 </button>
