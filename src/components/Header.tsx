@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Search, User, Plus, MessageCircle, Leaf, Menu, X, LayoutDashboard } from 'lucide-react';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.jpg';
 
 interface HeaderProps {
   currentView: string;
