@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, User, Plus, MessageCircle, Leaf, Menu, X, LayoutDashboard } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 interface HeaderProps {
   currentView: string;
@@ -26,10 +27,7 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex items-center space-x-2">
-              <Leaf className="h-8 w-8 text-orange-600" />
-              <span className="text-2xl font-bold text-gray-900">ReWear</span>
-            </div>
+            <img src={logo} alt="ReWear Logo" className="h-10 w-auto" />
           </div>
 
           {/* Desktop Navigation */}
