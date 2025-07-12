@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Search, Filter, Star, MessageCircle, Heart, ArrowUpDown } from 'lucide-react';
 
-export function BrowsePage() {
+interface BrowsePageProps {
+  onViewItem: (itemId: number) => void;
+}
+
+export function BrowsePage({ onViewItem }: BrowsePageProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedSize, setSelectedSize] = useState('all');
@@ -119,7 +123,7 @@ export function BrowsePage() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-white py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
@@ -128,7 +132,7 @@ export function BrowsePage() {
         </div>
 
         {/* Search and Filters */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <div className="bg-gray-50 rounded-lg shadow-sm p-6 mb-8">
           {/* Search Bar */}
           <div className="relative mb-4">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -137,7 +141,7 @@ export function BrowsePage() {
               placeholder="Search for brands, items, or styles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
           </div>
 
@@ -147,7 +151,7 @@ export function BrowsePage() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               >
                 {categories.map(category => (
                   <option key={category.id} value={category.id}>{category.label}</option>
@@ -157,7 +161,7 @@ export function BrowsePage() {
               <select
                 value={selectedSize}
                 onChange={(e) => setSelectedSize(e.target.value)}
-                className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               >
                 {sizes.map(size => (
                   <option key={size.id} value={size.id}>{size.label}</option>
@@ -178,7 +182,7 @@ export function BrowsePage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               >
                 <option value="newest">Newest First</option>
                 <option value="points-low">Points: Low to High</option>
@@ -194,7 +198,7 @@ export function BrowsePage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Condition</label>
-                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
                     <option>All Conditions</option>
                     <option>Excellent</option>
                     <option>Very Good</option>
@@ -205,13 +209,13 @@ export function BrowsePage() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Price Range (Points)</label>
                   <div className="flex space-x-2">
-                    <input type="number" placeholder="Min" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" />
-                    <input type="number" placeholder="Max" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" />
+                    <input type="number" placeholder="Min" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" />
+                    <input type="number" placeholder="Max" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" />
                   </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Distance</label>
-                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                  <select className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
                     <option>Any Distance</option>
                     <option>Within 5km</option>
                     <option>Within 10km</option>
@@ -231,7 +235,11 @@ export function BrowsePage() {
         {/* Items Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.map((item) => (
-            <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group cursor-pointer">
+            <div 
+              key={item.id} 
+              onClick={() => onViewItem(item.id)}
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group cursor-pointer"
+            >
               <div className="relative overflow-hidden">
                 <img
                   src={item.image}
@@ -241,7 +249,7 @@ export function BrowsePage() {
                 <div className="absolute top-3 left-3 bg-white px-2 py-1 rounded-full text-xs font-semibold text-gray-700">
                   {item.distance}
                 </div>
-                <div className="absolute top-3 right-3 bg-green-600 text-white px-2 py-1 rounded-full text-sm font-semibold">
+                <div className="absolute top-3 right-3 bg-orange-600 text-white px-2 py-1 rounded-full text-sm font-semibold">
                   {item.points} pts
                 </div>
                 <button className="absolute bottom-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 transition-colors opacity-0 group-hover:opacity-100">
@@ -257,14 +265,14 @@ export function BrowsePage() {
                   </div>
                 </div>
                 <p className="text-gray-600 mb-1">{item.brand} • Size {item.size}</p>
-                <p className="text-sm text-green-600 font-medium mb-3">Condition: {item.condition}</p>
+                <p className="text-sm text-orange-600 font-medium mb-3">Condition: {item.condition}</p>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-500">by {item.user}</span>
                   <div className="flex space-x-2">
-                    <button className="text-green-600 hover:text-green-700 font-medium text-sm">
+                    <button className="text-orange-600 hover:text-orange-700 font-medium text-sm">
                       View
                     </button>
-                    <button className="text-blue-600 hover:text-blue-700">
+                    <button className="text-gray-600 hover:text-gray-700">
                       <MessageCircle className="h-4 w-4" />
                     </button>
                   </div>

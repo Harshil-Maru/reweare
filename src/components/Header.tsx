@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Search, User, Plus, MessageCircle, Shirt, Menu, X } from 'lucide-react';
-import logo from '../assets/logo.jpg';
+import { Search, User, Plus, MessageCircle, Leaf, Menu, X, LayoutDashboard } from 'lucide-react';
 
 interface HeaderProps {
   currentView: string;
@@ -13,8 +12,9 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const navigation = [
-    { id: 'home', label: 'Home', icon: Shirt },
+    { id: 'home', label: 'Home', icon: Leaf },
     { id: 'browse', label: 'Browse', icon: Search },
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'add-item', label: 'Add Item', icon: Plus },
     { id: 'messages', label: 'Messages', icon: MessageCircle },
     { id: 'profile', label: 'Profile', icon: User },
@@ -26,7 +26,10 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <img src={logo} alt="ReWear Logo" className="h-10 w-auto" />
+            <div className="flex items-center space-x-2">
+              <Leaf className="h-8 w-8 text-orange-600" />
+              <span className="text-2xl font-bold text-gray-900">ReWear</span>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
@@ -39,8 +42,8 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
                   onClick={() => onViewChange(item.id)}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     currentView === item.id
-                      ? 'text-green-600 bg-green-50'
-                      : 'text-gray-700 hover:text-green-600 hover:bg-gray-50'
+                      ? 'text-orange-600 bg-orange-50'
+                      : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
                   }`}
                 >
                   <Icon className="h-4 w-4" />
@@ -52,8 +55,8 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
 
           {/* Points & Mobile Menu */}
           <div className="flex items-center space-x-4">
-            <div className="bg-green-100 px-3 py-1 rounded-full">
-              <span className="text-green-700 font-semibold text-sm">
+            <div className="bg-orange-100 px-3 py-1 rounded-full">
+              <span className="text-orange-700 font-semibold text-sm">
                 {userPoints} points
               </span>
             </div>
@@ -61,7 +64,7 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-md text-gray-700 hover:text-green-600 hover:bg-gray-50"
+              className="md:hidden p-2 rounded-md text-gray-700 hover:text-orange-600 hover:bg-gray-50"
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -83,8 +86,8 @@ export function Header({ currentView, onViewChange, userPoints }: HeaderProps) {
                     }}
                     className={`w-full flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       currentView === item.id
-                        ? 'text-green-600 bg-green-50'
-                        : 'text-gray-700 hover:text-green-600 hover:bg-gray-50'
+                        ? 'text-orange-600 bg-orange-50'
+                        : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
                     }`}
                   >
                     <Icon className="h-4 w-4" />

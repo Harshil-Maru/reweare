@@ -1,11 +1,14 @@
-import React from 'react';
-import { Leaf, Recycle, Users, Award, ArrowRight, Star } from 'lucide-react';
+import React, { useState } from 'react';
+import { Leaf, Recycle, Users, Award, ArrowRight, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface HomePageProps {
   onViewChange: (view: string) => void;
+  onViewItem: (itemId: number) => void;
 }
 
-export function HomePage({ onViewChange }: HomePageProps) {
+export function HomePage({ onViewChange, onViewItem }: HomePageProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const featuredItems = [
     {
       id: 1,
@@ -36,48 +39,82 @@ export function HomePage({ onViewChange }: HomePageProps) {
       points: 25,
       image: "https://images.pexels.com/photos/985635/pexels-photo-985635.jpeg?auto=compress&cs=tinysrgb&w=300",
       user: "Emma L."
+    },
+    {
+      id: 4,
+      title: "Classic White Sneakers",
+      brand: "Adidas",
+      size: "9",
+      condition: "Excellent",
+      points: 30,
+      image: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=300",
+      user: "Mike R."
+    },
+    {
+      id: 5,
+      title: "Silk Blouse",
+      brand: "Mango",
+      size: "M",
+      condition: "Very Good",
+      points: 28,
+      image: "https://images.pexels.com/photos/1462637/pexels-photo-1462637.jpeg?auto=compress&cs=tinysrgb&w=300",
+      user: "Lisa P."
     }
   ];
 
   const stats = [
-    { icon: Recycle, value: "12,453", label: "Items Exchanged", color: "text-green-600" },
-    { icon: Users, value: "3,847", label: "Active Members", color: "text-blue-600" },
-    { icon: Leaf, value: "2.3M", label: "CO₂ Saved (kg)", color: "text-emerald-600" },
-    { icon: Award, value: "847K", label: "Points Earned", color: "text-yellow-600" }
+    { icon: Recycle, value: "12,453", label: "Items Exchanged", color: "text-orange-600" },
+    { icon: Users, value: "3,847", label: "Active Members", color: "text-gray-600" },
+    { icon: Leaf, value: "2.3M", label: "CO₂ Saved (kg)", color: "text-orange-600" },
+    { icon: Award, value: "847K", label: "Points Earned", color: "text-gray-600" }
   ];
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % Math.ceil(featuredItems.length / 3));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + Math.ceil(featuredItems.length / 3)) % Math.ceil(featuredItems.length / 3));
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-50 to-emerald-50 py-16">
+      <section className="bg-gradient-to-br from-orange-50 to-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex justify-center mb-6">
-              <div className="bg-green-100 p-3 rounded-full">
-                <Leaf className="h-12 w-12 text-green-600" />
+              <div className="bg-orange-100 p-4 rounded-full">
+                <Leaf className="h-16 w-16 text-orange-600" />
               </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Give Your Clothes a
-              <span className="text-green-600"> Second Life</span>
+              Welcome to ReWear
+              <span className="text-orange-600"> Sustainable Fashion</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Join the sustainable fashion revolution. Exchange, swap, and discover pre-loved clothing 
-              while earning points and reducing textile waste.
+              The premier platform for exchanging unused clothing through direct swaps or our innovative point-based system. 
+              Join thousands of users promoting sustainable fashion and reducing textile waste.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button
-                onClick={() => onViewChange('browse')}
-                className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
+                onClick={() => onViewChange('add-item')}
+                className="bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-orange-700 transition-colors flex items-center justify-center space-x-2 text-lg"
               >
-                <span>Start Browsing</span>
+                <span>Start Swapping</span>
                 <ArrowRight className="h-5 w-5" />
               </button>
               <button
                 onClick={() => onViewChange('add-item')}
-                className="border-2 border-green-600 text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors"
+                className="border-2 border-orange-600 text-orange-600 px-8 py-4 rounded-lg font-semibold hover:bg-orange-50 transition-colors text-lg"
               >
-                List Your Items
+                Browse Items
+              </button>
+              <button
+                onClick={() => onViewChange('add-item')}
+                className="bg-gray-900 text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors text-lg"
+              >
+                List an Item
               </button>
             </div>
           </div>
@@ -113,16 +150,30 @@ export function HomePage({ onViewChange }: HomePageProps) {
               Discover amazing pre-loved pieces from our community members
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredItems.map((item) => (
-              <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group cursor-pointer">
+          
+          {/* Carousel Container */}
+          <div className="relative">
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {Array.from({ length: Math.ceil(featuredItems.length / 3) }).map((_, slideIndex) => (
+                  <div key={slideIndex} className="w-full flex-shrink-0">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                      {featuredItems.slice(slideIndex * 3, (slideIndex + 1) * 3).map((item) => (
+                        <div 
+                          key={item.id} 
+                          onClick={() => onViewItem(item.id)}
+                          className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group cursor-pointer"
+                        >
                 <div className="relative overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-3 right-3 bg-green-600 text-white px-2 py-1 rounded-full text-sm font-semibold">
+                          <div className="absolute top-3 right-3 bg-orange-600 text-white px-2 py-1 rounded-full text-sm font-semibold">
                     {item.points} pts
                   </div>
                 </div>
@@ -135,21 +186,41 @@ export function HomePage({ onViewChange }: HomePageProps) {
                     </div>
                   </div>
                   <p className="text-gray-600 mb-1">{item.brand} • Size {item.size}</p>
-                  <p className="text-sm text-green-600 font-medium mb-3">Condition: {item.condition}</p>
+                          <p className="text-sm text-orange-600 font-medium mb-3">Condition: {item.condition}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">by {item.user}</span>
-                    <button className="text-green-600 hover:text-green-700 font-medium text-sm">
+                            <button className="text-orange-600 hover:text-orange-700 font-medium text-sm">
                       View Details
                     </button>
                   </div>
                 </div>
               </div>
-            ))}
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Carousel Controls */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+            >
+              <ChevronLeft className="h-6 w-6 text-gray-600" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+            >
+              <ChevronRight className="h-6 w-6 text-gray-600" />
+            </button>
           </div>
+          
           <div className="text-center mt-12">
             <button
               onClick={() => onViewChange('browse')}
-              className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+              className="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors"
             >
               View All Items
             </button>
@@ -168,8 +239,8 @@ export function HomePage({ onViewChange }: HomePageProps) {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-green-600">1</span>
+              <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-orange-600">1</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">List Your Items</h3>
               <p className="text-gray-600">
@@ -177,8 +248,8 @@ export function HomePage({ onViewChange }: HomePageProps) {
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-blue-600">2</span>
+              <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-gray-600">2</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Browse & Exchange</h3>
               <p className="text-gray-600">
@@ -186,8 +257,8 @@ export function HomePage({ onViewChange }: HomePageProps) {
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-yellow-600">3</span>
+              <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-orange-600">3</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Complete Exchange</h3>
               <p className="text-gray-600">
